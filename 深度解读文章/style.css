@@ -1,0 +1,215 @@
+/* ====== 科技网格背景 ====== */
+.tech-grid {
+  background-image:
+    linear-gradient(rgba(6, 182, 212, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 182, 212, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* ====== 封面元素依次淡入 ====== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes scanLine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+.cover-el {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/* ====== Section 滚动淡入 ====== */
+.section-animate {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.section-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ====== 要点卡片依次动画 ====== */
+.point-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.3s;
+}
+.point-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ====== 标签云缩放 ====== */
+.tag-cloud {
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.tag-cloud.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ====== 论点卡片 ====== */
+.point-detail-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.point-detail-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+/* 悬停扫光 */
+.point-detail-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent);
+  transition: none;
+}
+.point-detail-card:hover::after {
+  animation: scanLine 0.8s ease forwards;
+}
+
+/* 论点左侧彩色竖条 */
+.bar-cyan { border-left: 3px solid #06b6d4; }
+.bar-blue { border-left: 3px solid #3b82f6; }
+.bar-violet { border-left: 3px solid #8b5cf6; }
+.bar-emerald { border-left: 3px solid #10b981; }
+.bar-amber { border-left: 3px solid #f59e0b; }
+.bar-pink { border-left: 3px solid #ec4899; }
+
+/* ====== 条形图动画 ====== */
+.bar-fill {
+  width: 0;
+  transition: width 1.2s ease;
+}
+.bar-fill.animated {
+  /* width set by JS */
+}
+
+/* ====== 时间线 ====== */
+.tl-line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #06b6d4, #8b5cf6, #10b981);
+}
+.tl-node {
+  position: relative;
+  padding-bottom: 2rem;
+  padding-left: 2rem;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.tl-node.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.tl-dot {
+  position: absolute;
+  left: -6px;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #334155;
+  background: #0f172a;
+}
+.tl-dot-pulse {
+  border-color: #06b6d4;
+  background: #06b6d4;
+  box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4);
+  animation: dotPulse 2s ease-in-out infinite;
+}
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(6, 182, 212, 0); }
+}
+.tl-dot-green {
+  border-color: #10b981;
+  background: #10b981;
+}
+.tl-dot-red {
+  border-color: #ef4444;
+  background: #ef4444;
+}
+.tl-dot-blue {
+  border-color: #3b82f6;
+  background: #3b82f6;
+}
+.tl-dot-violet {
+  border-color: #8b5cf6;
+  background: #8b5cf6;
+}
+.tl-dot-amber {
+  border-color: #f59e0b;
+  background: #f59e0b;
+}
+
+/* ====== 指标卡片 ====== */
+.metric-card {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.3s;
+}
+.metric-card.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ====== 导航药丸高亮 ====== */
+.nav-pill.active {
+  color: #06b6d4;
+  border-color: rgba(6, 182, 212, 0.5);
+  background: rgba(6, 182, 212, 0.08);
+}
+
+/* ====== 引用高亮块 ====== */
+.quote-block {
+  border-left: 2px solid rgba(6, 182, 212, 0.4);
+  background: rgba(6, 182, 212, 0.05);
+  padding: 0.75rem 1rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  margin-top: 0.75rem;
+}
+
+/* ====== 滚动条美化 ====== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* ====== 响应式 ====== */
+@media (max-width: 768px) {
+  .cover-el h1 {
+    font-size: 2rem;
+  }
+}
